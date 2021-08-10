@@ -1,0 +1,48 @@
+* {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.nav {
+  margin-left: 100px;
+  margin-right: 150px;
+}
+
+.nav-link {
+  font-family: "Karla", sans-serif;
+}
+
+.nav-top {
+  background-color: white;
+}
+
+html,
+body {
+  max-width: auto;
+  overflow-x: hidden;
+}
+
+.intro-color {
+  color: lightseagreen;
+}
+
+.lead {
+  color: #a2a0b8;
+}
+
+.jumbotron {
+  background-color: #e9f8ff !important;
+  width: 80% !important;
+  border-radius: 30px !important;
+}
+
+.case-study {
+  background-color: #fff4f6;
+}
+
+.navbar-right {
+  float: right !important;
+}
+
+.navbar-bottom {
+  display: block;
+}
