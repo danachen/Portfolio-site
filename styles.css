@@ -46,3 +46,9 @@ body {
 .navbar-bottom {
   display: block;
 }
+
+.cover {
+  object-fit: cover;
+  width: 100%;
+  height: 300px;
+}
