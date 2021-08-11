@@ -1,1 +1,1 @@
-Portfolio website, view at https://danachen.github.io/portfolio/
+Portfolio website, view at https://danachen.github.io/
