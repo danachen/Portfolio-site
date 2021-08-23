@@ -30,6 +30,7 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -164,127 +165,33 @@
       <!-- Projects section -->
       <div id="projects" class="container project-showcase">
         <h1 class="display-4">Small projects</h1>
-        <div class="row justify-content-md-center mt-5">
+        <div class="project-list-container row justify-content-md-center mt-5">
+          <script id="project-template" type="text/x-handlebars-template">
+            {{#each info}}
           <div class="col col-md-4">
             <div class="card" style="width: 18rem">
               <img
                 class="card-img-top cover"
-                src="terminal.jpg"
+                src="{{img}}"
                 alt="Card image cap"
               />
               <div class="card-body">
-                <h5 class="card-title">Simple Server</h5>
-                <p class="card-text">Server built with <i>bash</i> to deliver simple HTML content requested by browser.</p>
+                <h5 class="card-title">{{name}}</h5>
+                <p class="card-text">{{about}}</p>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Technology: bash</li>
+                <li class="list-group-item">Technology: {{tech}}</li>
               </ul>
               <div class="card-body">
-                <a href="#" class="card-link d-none">Deployment</a>
-                <a href="https://github.com/danachen/simple-server" class="card-link">Github</a>
+                <a href="{{github}}" class="card-link">Github</a>
+                {{#if deployment}}
+                  <a href="{{deployment}}" class="card-link">Deployment</a>
+                {{/if}}
               </div>
             </div>
           </div>
-          <div class="col col-md-4">
-            <div class="card" style="width: 18rem">
-              <img
-                class="card-img-top cover"
-                src="book-reader.jpg"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Book Reader</h5>
-                <p class="card-text">Book reader that parses copy-right works into user-friendly chapters and search functionality.</p>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Technology: Ruby, Sinatra, Javascript, HTML/CSS</li>
-              </ul>
-              <div class="card-body">
-                <a href="https://book-reader-sherlock.herokuapp.com/" class="card-link">Deployment</a>
-                <a href="https://github.com/danachen/book-reader" class="card-link">Github</a>
-              </div>
-            </div>
-          </div>
-          <div class="col col-md-4">
-            <div class="card" style="width: 18rem">
-              <img
-                class="card-img-top cover"
-                src="file-based-cms.jpg"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <h5 class="card-title">File-Based CMS</h5>
-                <p class="card-text">File-based content management system with sessions and user management.</p>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Technology: Ruby, Sinatra, HTML/CSS</li>
-              </ul>
-              <div class="card-body">
-                <a href="https://github.com/danachen/file-based-cms" class="card-link">Github</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-md-center mt-5">
-          <div class="col col-md-4">
-            <div class="card" style="width: 18rem">
-              <img
-                class="card-img-top cover"
-                src="todo-html.png"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Todo with HTML/CSS</h5>
-                <p class="card-text">A web and mobile friendly todo list front-end display designed in HTML/CSS.</p>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Technology: HTML/CSS</li>
-              </ul>
-              <div class="card-body">
-                <a href="https://danachen.github.io/todo-html/" class="card-link">Deployment</a>
-                <a href="https://github.com/danachen/todo-html" class="card-link">Github</a>
-              </div>
-            </div>
-          </div>
-          <div class="col col-md-4">
-            <div class="card" style="width: 18rem">
-              <img
-                class="card-img-top cover"
-                src="todo-js-oop.jpg""
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Todo JS Backend</h5>
-                <p class="card-text">Todo list backend built with Javascript utilizing OOP Principles with full test suite.</p>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Technology: Javascript, HTML/CSS</li>
-              </ul>
-              <div class="card-body">
-                <a href="https://github.com/danachen/todo-js-oop" class="card-link">Github</a>
-              </div>
-            </div>
-          </div>
-          <div class="col col-md-4">
-            <div class="card" style="width: 18rem">
-              <img
-                class="card-img-top cover"
-                src="whack-a-ruby.png"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Whack a Ruby</h5>
-                <p class="card-text">Project Description: Implementation of the classic Whack a Mole game.</p>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Technology: Javascript, HTML/CSS</li>
-              </ul>
-              <div class="card-body">
-                <a href="https://whack-a-ruby.herokuapp.com/" class="card-link">Deployment</a>
-                <a href="https://github.com/danachen/whack-a-ruby" class="card-link">Github</a>
-              </div>
-            </div>
-          </div>
+          {{/each}}
+        </script>
         </div>
       </div>
     </main>
