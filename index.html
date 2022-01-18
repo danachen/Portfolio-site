@@ -46,7 +46,7 @@
       href="https://fonts.googleapis.com/css2?family=Karla:wght@600&display=swap"
       rel="stylesheet"
     />
-    <title>Dana Chen • Developer in Training</title>
+    <title>Dana Chen • Software Developer</title>
   </head>
   <body>
     <nav class="navbar navbar-default navbar-expand-sm nav-top sticky-top mt-5 mb-5 pb-5">
@@ -55,11 +55,11 @@
           <li class="nav-item">
             <a href="#about" class="# nav-link active">About</a>
           </li>
-          <li class="nav-item d-none">
-            <a href="#case-study" class="# nav-link">Case Study</a>
+          <li class="nav-item">
+            <a href="#case-study" class="# nav-link">Recent Project</a>
           </li>
           <li class="nav-item">
-            <a href="#projects" class="# nav-link">Projects</a>
+            <a href="#projects" class="# nav-link">Small Projects</a>
           </li>
           <li class="nav-item">
             <a href="#contact" class="# nav-link">Contact</a>
@@ -72,7 +72,7 @@
             ></a>
           </li>
           <li>
-            <a class="#medium nav-link" href="https://medium.com/@danacc"
+            <a class="#medium nav-link d-none" href="https://medium.com/@danacc"
               ><i class="fab fa-medium fa-lg"></i>
             </a>
           </li>
@@ -94,9 +94,9 @@
         </ul>
       </div>
   </nav>    
-         
+  <main>
+  <section>    
   <div class="container-fluid">
-  <!-- Intro header -->
     <div
       id="about"
       class="
@@ -109,62 +109,50 @@
     >
       <div class="col col-md-5 mb-5">
         <h1 class="display-3">
-          Hi, I'm a <span class="intro-color">full-stack developer in training.</span>
+          Hi, I'm a <span class="intro-color">full-stack developer.</span>
         </h1>
         <p class="lead">
-          My name is Dana, I'm a software developer in training, based in the Hague, Netherlands.
+          My name is Dana, I'm a software developer based in the Hague, Netherlands.
         </p>
       </div>
       <div class="col col-md-5">
         <img src="dana.png" width="400" height = "400"/>
       </div>
     </div>
-    <main>
-      <!-- Case study section -->
-      <div id="case-study" class="container-fluid case-study p-5 mt-5 d-none">
-        <div class="mx-auto" style="width: 400px">
-          <h1 class="display-4">Case Study</h1>
+    </main>
+      <section class="pt-3">
+      <div id="case-study" class="container-fluid case-study pt-5 pb-5 mt-5 mb-5">
+        <div class="mx-auto">
+          <h1 class="display-4 text-center mt-5 mb-5 ">Alexandria Reader</h1>
         </div>
-        <div class="row m-5">
-          <div class="col col-md-5">
-            <img src="https://picsum.photos/500/400" />
+        <div class="row m-5 justify-content-md-center">
+          <div class="col col-4">
+            <img class="img-fluid" src="alexandria.png" />
           </div>
-          <div class="col col-md-5">
-            <div class="row justify-content-md-center m-5">
+          <div class="col col-6">
+            <div class="row justify-content-md-center mb-3 w-85 pl-5">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Corporis repellat nemo fuga aspernatur libero accusamus
-                laborum suscipit illum qui dolores nihil odio numquam
-                quibusdam veniam dignissimos ad, debitis officiis totam!
+                My most recent full-stack project is an open-source language learning app called Alexandria.</p><p>
+                Alexandria allows users to upload and read texts of choice, highlight words or phrases, and add translations from built-in dictionaries. A list of vocabulary is also available for review.
               </p>
-            </div>
-            <div class="row m-6">
-              <img src="https://picsum.photos/600/300" />
-            </div>
-            <div class="row justify-content-md-center m-6">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Corporis repellat nemo fuga aspernatur libero accusamus
-                laborum suscipit illum qui dolores nihil odio numquam
-                quibusdam veniam dignissimos ad, debitis officiis totam!
-              </p>
-            </div>
-            <div class="row m-6">
-              <img src="https://picsum.photos/600/200" />
-            </div>
-            <div class="row m-6">
-              <button type="button" class="btn btn-primary">Primary</button>
-              <button type="button" class="btn btn-secondary">
-                Secondary
-              </button>
+              <p>Alexandria is built with React, Typescript, NodeJS, Express, and deployed over Netlify and Heroku.</p>
+              <div class="mt-5 pt-5">
+                <button type="button" class="btn btn-primary mr-5">Try Alexandria</button>
+                <button type="button" class="btn btn-warning mr-5">
+                  Github Repos
+                </button>
+                <button type="button" class="btn btn-info">
+                  Case Study
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Projects section -->
+    </section>
+    <section class="pt-5 mb-5">
       <div id="projects" class="container project-showcase">
-        <h1 class="display-4">Small projects</h1>
+        <h1 class="display-4 text-center mt-5">Small projects</h1>
         <div class="project-list-container row justify-content-md-center mt-5">
           <script id="project-template" type="text/x-handlebars-template">
             {{#each info}}
@@ -194,6 +182,7 @@
         </script>
         </div>
       </div>
+    </section>
     </main>
     <footer>
       <div id="contact" class="jumbotron d-block mx-auto">

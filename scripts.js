@@ -30,7 +30,7 @@ const projects = {
   
     { img: 'book-reader.jpg',
       name: "Book Reader",
-      about: "Book reader that parses copy-right works into user-friendly chapters and search functionality.",
+      about: "Parses non-copy-right works into user-friendly chapters and search functionality.",
       tech: "Ruby, Sinatra, Javascript, HTML/CSS",
       deployment: "https://book-reader-sherlock.herokuapp.com/",
       github: "https://github.com/danachen/book-reader",
@@ -38,18 +38,18 @@ const projects = {
   
     { img: 'file-based-cms.jpg',
       name: "File-Based CMS",
-      about: "File-based content management system with sessions and user management.",
+      about: "File-based content management system with sessions & user management.",
       tech: "Ruby, Sinatra, HTML/CSS",
       deployment: "",
       github: 'https://github.com/danachen/file-based-cms',
     },
   
-    { img: 'todo-html.png',
-      name: "Todo with HTML/CSS",
-      about: "A web and mobile friendly todo list front-end display designed in HTML/CSS.",
-      tech: "HTML/CSS",
-      deployment: "https://danachen.github.io/todo-html/",
-      github: 'https://github.com/danachen/todo-html',
+    { img: 'smart-shopping.png',
+      name: "Smart Shopping App",
+      about: "Mobile-first app, learns buying habits and remember what you’re likely to need to buy on your next trip to the store.",
+      tech: "React, Firebase",
+      deployment: "https://tcl-35-smart-shopping-list.web.app/",
+      github: 'https://github.com/the-collab-lab/tcl-35-smart-shopping-list',
     },
 
     { img: 'todo-js-oop.jpg',
@@ -60,12 +60,12 @@ const projects = {
       github: 'https://github.com/danachen/todo-js-oop',
     },
 
-    { img: 'whack-a-ruby.png',
-      name: "Whack a Ruby",
-      about: "Implementation of the classic Whack a Mole game.",
-      tech: "Javascript, HTML/CSS",
-      deployment: "https://whack-a-ruby.herokuapp.com/",
-      github: 'https://github.com/danachen/whack-a-ruby',
+    { img: 'contact-manager.png',
+      name: "Contact Manager",
+      about: "Tracks, categorizes, and filters contact email and phone numbers.",
+      tech: "Express, NodeJS, JS, HTML/CSS, Handlebars",
+      deployment: "hhttps://contact-lite.herokuapp.com/",
+      github: 'https://github.com/danachen/contact-manager',
     },
   ]
 }

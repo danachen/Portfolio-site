@@ -2,6 +2,10 @@
   font-family: "Space Grotesk", sans-serif;
 }
 
+.container-fluid {
+  padding: 0 !important;
+}
+
 .nav {
   margin-left: 100px;
   margin-right: 150px;
@@ -37,6 +41,7 @@ body {
 
 .case-study {
   background-color: #fff4f6;
+  width: 100%;
 }
 
 .navbar-right {
