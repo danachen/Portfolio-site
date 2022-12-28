@@ -4,11 +4,11 @@ title: About
 permalink: /about/
 ---
 
-I'm a software developer in training. 
+I'm a reader, moonlights as developer. 
 
 ### More Information
 
-This blog chronicles my learning journey.
+Hodgepodge of thoughts on reading, learnings.
 
 ### Contact me
 
