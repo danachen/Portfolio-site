@@ -1,0 +1,116 @@
+I"|/<p>Here’s a seemingly simple LinkedList problem that utilizes the fast and slow pointer technique and some basic Linked List manipulation . But going down the rabbit hole of understanding every component of this problem proved to be more than I expected.</p>
+
+<p>Here’s the problem: Given a linked list, take the second half of the list (if it has an odd number of nodes, then take the second of the middle nodes), reverse it, and then interweave those nodes with the first half of the list.</p>
+
+<p>Example 1:
+Input: a &gt; b &gt; c &gt; 1 &gt; 2 &gt; 3
+Output: a &gt; 3 &gt; b &gt; 2 &gt; c &gt; 1</p>
+
+<p>Example 2:
+Input: 1 &gt; 3 &gt; 5
+Output: 1 &gt; 5 &gt; 3</p>
+
+<p>After some initial analysis, it’s clear that the problem can be solved by running three subroutines:</p>
+<ol>
+  <li>Split the list into two lists</li>
+  <li>Reverse the second list</li>
+  <li>Interweave the first with the second list</li>
+</ol>
+
+<p>List reversal and interweaving the two lists are less tricky, so let’s get those out of the way.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">reverse</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">head</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">prev</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  
+  <span class="k">while</span> <span class="p">(</span><span class="nx">head</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">next</span> <span class="o">=</span> <span class="nx">head</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
+    <span class="nx">head</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">prev</span><span class="p">;</span>
+    <span class="nx">prev</span> <span class="o">=</span> <span class="nx">head</span><span class="p">;</span>
+    <span class="nx">head</span> <span class="o">=</span> <span class="nx">next</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">prev</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>One interesting observation I made along the way is the value of the head node once the <code class="language-plaintext highlighter-rouge">reverse</code> function has ran. Suppose we have a print function in the class <code class="language-plaintext highlighter-rouge">Node</code> to observe the chnages in nodes.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Node</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span> <span class="nx">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">val</span> <span class="o">=</span> <span class="nx">val</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">next</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">print</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">temp</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nx">temp</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">temp</span><span class="p">.</span><span class="nx">val</span><span class="p">);</span>
+      <span class="nx">temp</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If we run the input from Example 1 (a &gt; b &gt; c &gt; 1 &gt; 2 &gt; 3), we observe a change in the <code class="language-plaintext highlighter-rouge">head</code> node.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">head</span><span class="p">.</span><span class="nx">print</span><span class="p">();</span> <span class="c1">// a &gt; b &gt; c &gt; 1 &gt; 2 &gt; 3</span>
+<span class="kd">let</span> <span class="nx">reversed</span> <span class="o">=</span> <span class="nx">reverse</span><span class="p">(</span><span class="nx">head</span><span class="p">);</span> <span class="c1">// 3 &gt; 2 &gt; 1 &gt; c &gt; b &gt; a</span>
+<span class="nx">head</span><span class="p">.</span><span class="nx">print</span><span class="p">();</span> <span class="c1">// a &gt; null</span>
+</code></pre></div></div>
+
+<p>I then realized that when we copy a Linked List, we are not deep cloning the data structure but merely creating a new head with shared nodes, kind of like this.</p>
+
+<p><img src="https://i.stack.imgur.com/e1jOQ.png" alt="alt text" title="Linked List" /></p>
+
+<p>So when we have initialized fast and slow pointers and assigned them to point to the same nodes as <code class="language-plaintext highlighter-rouge">head</code>, we are still very much working with the same nodes. So during the reversal process, we move the pointer with the newly initialized nodes, backwards, yet the initial head remains at the head of the original node <code class="language-plaintext highlighter-rouge">a</code>, except that at end of the reversal process, it’s now pointing at <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+<p>Prior to reversing the list</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a &gt; b &gt; c &gt; 1 &gt; 2 &gt; 3 &gt; null
+^
+head
+</code></pre></div></div>
+
+<p>After reversing the list</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3 &gt; 2 &gt; 1 &gt; c &gt; b &gt; a &gt; null
+^                   ^
+temp                head
+</code></pre></div></div>
+
+<p>Next, we interweave two lists, one representing the first half and the other the second half of the list.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">merge</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">l1</span><span class="p">,</span> <span class="nx">l2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="nx">l2</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">nextNode</span> <span class="o">=</span> <span class="nx">l1</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span> <span class="c1">// save the next node before redirecting the pointer</span>
+   <span class="nx">l1</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">l2</span><span class="p">;</span> <span class="c1">// redirect the pointer to the other list</span>
+   <span class="nx">l1</span> <span class="o">=</span> <span class="nx">nextNode</span><span class="p">;</span> <span class="c1">// move up the current pointer to the saved one above</span>
+
+   <span class="nx">nextNode</span> <span class="o">=</span> <span class="nx">l2</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span> <span class="c1">// same as above, save the next pointer before repointing the pointer</span>
+   <span class="nx">l2</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">l1</span><span class="p">;</span> <span class="c1">// repoint the next pointer to the other list</span>
+   <span class="nx">l2</span> <span class="o">=</span> <span class="nx">nextNode</span><span class="p">;</span> <span class="c1">// current list needs to jump position to saved pointer above</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Then we come to the first item on the list, which is the method responsible for splitting the original list in two.</p>
+
+<ol>
+  <li>In order to provide the second half of the list for both odd and even numbered nodes of LL, we set up the <code class="language-plaintext highlighter-rouge">while</code> loop to stop one node before the middle of the list is reached. The assigned variable to <code class="language-plaintext highlighter-rouge">slow.next</code> will always return the correct node at the middle of the list regardless of whether the LL is even or odd numbered.</li>
+  <li>Instead of reassigning <code class="language-plaintext highlighter-rouge">slow = slow.next</code> and retunring <code class="language-plaintext highlighter-rouge">slow</code> to the main method as the split second part of the array, here we assign the node to the start of the second half of the list to a new variable. This allows us to move the pointer to the head <code class="language-plaintext highlighter-rouge">slow</code> to null, which means that the current head now will stop once it reaches the middle of the list. This way, we end up with two “clean” lists representing the first and second halfs of the list for processing later on.</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">split</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">head</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">fast</span> <span class="o">=</span> <span class="nx">head</span><span class="p">,</span> <span class="nx">slow</span> <span class="o">=</span> <span class="nx">head</span><span class="p">;</span>
+  
+  <span class="k">while</span> <span class="p">(</span><span class="nx">fast</span><span class="p">.</span><span class="nx">next</span> <span class="o">&amp;&amp;</span> <span class="nx">fast</span><span class="p">.</span><span class="nx">next</span><span class="p">.</span><span class="nx">next</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fast</span> <span class="o">=</span> <span class="nx">fast</span><span class="p">.</span><span class="nx">next</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
+    <span class="nx">slow</span> <span class="o">=</span> <span class="nx">slow</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">let</span> <span class="nx">secondHalf</span> <span class="o">=</span> <span class="nx">slow</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
+  <span class="nx">slow</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">secondHalf</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>So there they are, the three pieces: 1) splitting the head node, 2) reversing the second half of the list, and 3) interweaving two lists together. The trickiest thing is remembering what assigning new variables to the head node really means. Instead of having a hard-coded bopy of the nodes, we are creating a new head node that’s connecting to the existing nodes. This means that while operations to split or reverse a list is taking place, the original head node is stationary, but the pointers can be manipulated and can be placed elsewhere.</p>
+:ET

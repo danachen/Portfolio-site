@@ -4,7 +4,7 @@ title: The many learnings of a seemingly straightforward LinkedList problem
 category: blog
 ---
 
-Here's a seemingly simple LinkedList problem that utilizes the fast and slow pointer technique and some basic Linked List manipulation . But going down the rabbit hole of understanding every component of this problem proved to be more than I expected.
+Here's a seemingly simple LinkedList problem that utilizes the fast and slow pointer technique and some basic Linked List manipulation. But going down the rabbit hole of understanding every component of this problem proved to be more than I expected.
 
 Here's the problem: Given a linked list, take the second half of the list (if it has an odd number of nodes, then take the second of the middle nodes), reverse it, and then interweave those nodes with the first half of the list.
 
