@@ -1,0 +1,123 @@
+I"�<h2 id="specifications-when-javascript-runs-in-a-web-browser">Specifications when Javascript runs in a web browser?</h2>
+<ul>
+  <li>DOM spec: all page contents are represented as object and can be modified</li>
+  <li>BOM spec: additional objects provided by browser, non-DOM objects like the <code class="language-plaintext highlighter-rouge">navigator</code> or <code class="language-plaintext highlighter-rouge">location</code> objects</li>
+  <li>HTML spec: describes HTML language (tags) and BOM, various browser functions like <code class="language-plaintext highlighter-rouge">setTimeout</code>, <code class="language-plaintext highlighter-rouge">alert</code>, <code class="language-plaintext highlighter-rouge">location</code></li>
+</ul>
+
+<h2 id="the-dom-tree-represent">The DOM tree represent?</h2>
+<p>The document in the browser is the DOM tree. Tags become element nodes, text become text nodes. All nodes can be manipulated.</p>
+
+<h2 id="wys-of-reaching-a-dom-nodes-immediate-neighbours">Wys of reaching a DOM node’s immediate neighbours</h2>
+
+<h2 id="all-nodes--element-nodes-only">all nodes | element nodes only</h2>
+<p>parentNode | parentElement
+childNodes | children
+firstChild | firstElementChild
+lastChild  | lastElementChild
+previousSibling | previousElementSibling
+nextSibling | nextElementSibling</p>
+
+<h2 id="properties-supported-by-the-table-element">Properties supported by the &lt;table&gt; element</h2>
+
+<h2 id="element--properties--references">element | properties | references</h2>
+<p>table |
+      | .rows | &lt;tr&gt;
+      | .caption | &lt;caption&gt;
+      | .tHead | &lt;thead&gt;
+      | .tFoot | &lt;tfoot&gt;
+      | .tBodies | &lt;tBody&gt;
+thead | .rows | &lt;tr&gt;
+tfoot | .rows | &lt;tr&gt;
+tbody | .rows | &lt;tr&gt;
+tr | .cells | &lt;td&gt;, &lt;th&gt;
+   | .sectionRowIndex | position index of &lt;tr&gt;
+   | .rowIndex | number of &lt;tr&gt; in table, including all table rows
+td | .cellIndex | number of cell inside &lt;tr&gt;
+th | .cellIndex | number of cell inside &lt;tr&gt;</p>
+
+<h2 id="main-methods-to-search-for-nodes-in-dom">Main methods to search for nodes in DOM</h2>
+
+<h2 id="method--searches-by--can-call-on-element--live">Method | Searches By | Can call on element? | Live?</h2>
+<p>querySelector | CSS-selector | yes | no
+querySelectorAll | CSS-selector | yes | no
+getElementById | id | no | no
+getElementsByName | name | no | yes
+getElementsByTagName | tag or ‘*’ | yes | yes
+getElementsByClassName | class | yes | yes</p>
+
+<p>Additionally:
+<code class="language-plaintext highlighter-rouge">elem.matches(css)</code> checks if <code class="language-plaintext highlighter-rouge">elem</code> matches a given CSS selector
+<code class="language-plaintext highlighter-rouge">elem.closest(css)</code> looks for nearest ancestor that matches CSS selector, including the <code class="language-plaintext highlighter-rouge">elem</code> itself
+<code class="language-plaintext highlighter-rouge">elemA.contains(elemB)</code>, returns <code class="language-plaintext highlighter-rouge">true</code> if <code class="language-plaintext highlighter-rouge">elemB</code> is inside <code class="language-plaintext highlighter-rouge">elemA</code>, or if <code class="language-plaintext highlighter-rouge">elemA === elemB</code></p>
+
+<h2 id="differences-between-a-live-and-a-static-collection">Differences between a live and a static collection</h2>
+<p>Methods like <code class="language-plaintext highlighter-rouge">querySelectorAll</code> returns a static collection, as opposed to <code class="language-plaintext highlighter-rouge">getElementsByTagName</code>.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div&gt;</span>First div<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="kd">let</span> <span class="nx">divs</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">divs</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span> <span class="c1">// 1</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;div&gt;</span>Second div<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">divs</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span> <span class="c1">// 2</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div&gt;</span>First div<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="kd">let</span> <span class="nx">divs</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">divs</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span> <span class="c1">// 1</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;div&gt;</span>Second div<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">divs</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span> <span class="c1">// 1</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<h2 id="main-dom-node-properties">Main DOM node properties</h2>
+
+<h2 id="dom-node-properties--htmlinputelement--htmlanchorelement">DOM node properties | HTMLInputElement(<input />) | HTMLAnchorElement(<a>)</a></h2>
+<p>nodeType | value | href
+nodeName (all) | type |
+tagName (for elements)
+innerHTML
+outerHTML
+textContent
+nodeValue (mostly uses data below)
+data (content of non-element node, modifiable)
+hidden (when true, equals <code class="language-plaintext highlighter-rouge">display: none</code>)</p>
+
+<h1 id="differences-between-attributes-html-and-properties-dom">Differences between attributes (HTML) and properties (DOM)</h1>
+
+<p>In general, attributes are what’s written in HTML, and properties are what’s in DOM objects.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> | Properties | Attributes ----------------------------------------------------------------------------------- Type | Any value, standard properties have types described in the spec | A string Name | Name is case-sensitive | Name is not case-sensitive
+</code></pre></div></div>
+
+<p>We mostly use properties, but can choose attributes only if DOM properties do not suit, or when exact attributes are needed.</p>
+<ul>
+  <li>Non-standard attribute, if starts with <code class="language-plaintext highlighter-rouge">data-</code>, use <code class="language-plaintext highlighter-rouge">dataset</code></li>
+  <li>Read value as written in HTML, e.g. the <code class="language-plaintext highlighter-rouge">href</code> field is always a full URL and we want the full value</li>
+</ul>
+
+<p>Methods that work with attributes:</p>
+
+<h2 id="elem-">elem |</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> | .hasAttribute(name)
+ | .getAttribute(name)
+ | .setAttribute(name, value)
+ | .removeAttribute(name)
+ | .attributes
+</code></pre></div></div>
+
+<p>E.g. get the attribute of an element with a non-standard attribute</p>
+<div data-widget-name="menu">Choose genre</div>
+<script>
+  let elem = document.querySelector('[data-widget-name]');
+  console.log(elem.getAttribute('data-widget-name'));
+  console.log(elem.dataset.widgetName); // does the same as above
+</script>
+
+:ET
